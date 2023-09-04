@@ -17,11 +17,13 @@ namespace SctvMulticastGenerator
         private const string _baseAddress = "http://epg.51zmt.top:8000";
         private const string _sctvMulticastaddress = $"{_baseAddress}/sctvmulticast.html";
         private const string _uploadAddress = $"{_baseAddress}/api/upload/";
-
+        private string outputfilePath;
         private readonly HttpClient client;
-        public Generator()
+
+        public Generator(string outputfilePath)
         {
             this.client = new HttpClient();
+            this.outputfilePath = outputfilePath;
         }
 
         internal async Task Run()
@@ -47,7 +49,7 @@ namespace SctvMulticastGenerator
             var download = await this.client.GetAsync(downloadAddress);
             if (download.IsSuccessStatusCode)
             {
-                using FileStream fs = File.Create("iptv.m3u");
+                using FileStream fs = File.Create(this.outputfilePath);
                 var streamFromRemote = await download.Content.ReadAsStreamAsync();
                 await streamFromRemote.CopyToAsync(fs);
             }
