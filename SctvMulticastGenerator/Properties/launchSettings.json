@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SctvMulticastGenerator": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
