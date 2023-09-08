@@ -23,15 +23,21 @@ namespace SctvMulticastGenerator
         public Generator(string outputfilePath)
         {
             this.client = new HttpClient();
-            this.outputfilePath = outputfilePath;
+            this.outputfilePath = Path.GetFullPath(outputfilePath);
         }
 
         internal async Task Run()
         {
+            Console.WriteLine("Start Generate Sctv Multicast.");
+
+            Console.WriteLine("Start Get Sctv Multicast DataTable.");
             DataSet dataSet = await GetMulticastDataTable();
+            Console.WriteLine("Done Get Sctv Multicast DataTable.");
+
             StringBuilder sb = new StringBuilder();
             foreach (DataTable table in dataSet.Tables)
             {
+                Console.WriteLine($"Table {table.TableName} has {table.Rows.Count} channels.");
                 foreach (DataRow row in table.Rows)
                 {
                     sb.AppendLine(row[1].ToString());
@@ -40,8 +46,13 @@ namespace SctvMulticastGenerator
                 }
             }
 
+            Console.WriteLine("Start Get Download Address.");
             var downloadAddress = await ConvertToFormal(sb);
+            Console.WriteLine("Done Get Download Address.");
+
+            Console.WriteLine("Start Download.");
             await DownloadFile(downloadAddress);
+            Console.WriteLine("Downloaded.");
         }
 
         private async Task DownloadFile(string downloadAddress)
