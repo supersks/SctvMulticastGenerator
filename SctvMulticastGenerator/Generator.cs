@@ -18,6 +18,11 @@ namespace SctvMulticastGenerator
         {
             this.client = new HttpClient();
             this.outputfilePath = Path.GetFullPath(outputfilePath);
+            var directory = Path.GetDirectoryName(this.outputfilePath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
         }
 
         internal async Task Run()

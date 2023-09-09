@@ -11,7 +11,7 @@
             }
             else
             {
-                outputfile = "iptv.m3u";
+                outputfile = "/output/iptv.m3u";
             }
             Generator generator = new Generator(outputfile);
             generator.Run().Wait();
