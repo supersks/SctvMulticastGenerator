@@ -1,14 +1,8 @@
-﻿using HtmlAgilityPack;
-using SctvMulticastGenerator.Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Data;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+using HtmlAgilityPack;
 
 namespace SctvMulticastGenerator
 {

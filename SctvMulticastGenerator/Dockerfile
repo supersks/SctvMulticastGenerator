@@ -17,4 +17,4 @@ RUN dotnet publish "SctvMulticastGenerator.csproj" -c Release -o /app/publish /p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "SctvMulticastGenerator.dll", "param1"]
+ENTRYPOINT ["dotnet", "SctvMulticastGenerator.dll"]

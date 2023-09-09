@@ -4,11 +4,15 @@
     {
         static void Main(string[] args)
         {
-            if (args.Count() != 1)
+            string outputfile = string.Empty;
+            if (args.Count() == 1)
             {
-                throw new ArgumentException("args is not correct! must be output file full path!!");
+                outputfile = args[0];
             }
-            string outputfile = args[0];
+            else
+            {
+                outputfile = "iptv.m3u";
+            }
             Generator generator = new Generator(outputfile);
             generator.Run().Wait();
         }
