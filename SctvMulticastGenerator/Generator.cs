@@ -40,7 +40,7 @@ namespace SctvMulticastGenerator
                 foreach (DataRow row in table.Rows)
                 {
                     sb.AppendLine(row[1].ToString());
-                    sb.AppendLine($"rtp://{row[2].ToString()}");
+                    sb.AppendLine(row[6].ToString());
                     sb.AppendLine();
                 }
             }
